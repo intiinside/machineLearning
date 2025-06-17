@@ -30,5 +30,9 @@ sub column_means{
 };
 sml->add_to_class('column_means',\&{'column_means'});
 
-
-
+# Desviacion estandar
+sub column_stdevs{
+    my ($self, $dataset, $means)=@_;
+    return mx->nd->sqrt(($dataset - $means)->power(2)->sum(axis=>0)/($dataset->len -1));
+}
+sml->add_to_class('column_stdevs',\@{'column_stdevs'});
